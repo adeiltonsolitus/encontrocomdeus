@@ -1,0 +1,1182 @@
+/* css/style.css */
+
+/* ==========================================================================
+   1. LAYOUT DO HEADER & MENU
+   ========================================================================== */
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    background-color: rgba(5, 5, 5, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    transition: background-color var(--transition-fast);
+}
+
+.header-container {
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: 1.25rem var(--space-sm);
+    display: table;
+    width: 100%;
+}
+
+.logo-container {
+    display: block;
+    float: left;
+}
+
+.logo-text {
+    font-family: var(--font-title);
+    font-size: 1.75rem;
+    letter-spacing: 2px;
+    color: var(--color-text-pure);
+    line-height: 1;
+}
+
+/* Menu de Navegação - Comportamento Mobile Padrão */
+.nav-menu {
+    display: none; /* Controlado via JS ou Media Query */
+}
+
+.menu-toggle {
+    float: right;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: block;
+}
+
+.hamburger {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-text-pure);
+    position: relative;
+    transition: background var(--transition-fast);
+}
+
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-text-pure);
+    left: 0;
+    transition: transform var(--transition-fast);
+}
+
+.hamburger::before { top: -6px; }
+.hamburger::after { bottom: -6px; }
+
+
+/* ==========================================================================
+   2. ESTRUTURA DO HERO (MODIFICADO COM IMAGEM DE FUNDO EM MARCA D'ÁGUA)
+   ========================================================================== */
+.hero-section {
+    position: relative;
+    min-height: 100vh;
+    padding-top: 100px; /* Desconto do Header Fixo */
+    padding-bottom: var(--space-lg);
+    background-color: var(--color-bg-main);
+    display: block;
+    overflow: hidden; /* Evita vazamento da imagem de fundo */
+}
+
+/* Pseudo-elemento injetando a imagem anexada ao fundo da primeira seção */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/CAPA FORM ENCONTRO COM DEUS.png');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    opacity: 0.06; /* 6% de opacidade para não atrapalhar leitura e logos */
+    z-index: 1;
+    pointer-events: none; /* Ignora cliques para não travar os botões reais */
+}
+
+/* Garante que o conteúdo textual e gráfico flutue acima da marca d'água */
+.hero-container {
+    position: relative;
+    z-index: 2;
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: 0 var(--space-sm);
+}
+
+/* Coluna Gráfica Superior no Mobile */
+.hero-graphic {
+    width: 100%;
+    margin-bottom: var(--space-md);
+    position: relative;
+}
+
+.artwork-wrapper {
+    position: relative;
+    width: 100%;
+    max-width: 480px;
+    margin: 0 auto;
+    border-radius: var(--border-radius-md);
+    overflow: hidden;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.hero-img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    filter: grayscale(15%) contrast(105%);
+}
+
+/* Efeito Brush simulado via máscara de gradiente linear/radial */
+.brush-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, var(--color-bg-main) 0%, rgba(5, 5, 5, 0) 25%),
+                linear-gradient(to right, var(--color-bg-main) 0%, rgba(5, 5, 5, 0) 10%),
+                linear-gradient(to left, var(--color-bg-main) 0%, rgba(5, 5, 5, 0) 10%);
+    pointer-events: none;
+}
+
+/* Coluna de Conteúdo/Copy */
+.hero-content {
+    width: 100%;
+    text-align: center;
+}
+
+.hero-subtitle {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--color-primary);
+    font-weight: 600;
+    display: block;
+    margin-bottom: var(--space-xs);
+}
+
+.hero-title {
+    font-family: var(--font-title);
+    font-size: 3.5rem;
+    line-height: 0.95;
+    letter-spacing: -1px;
+    color: var(--color-text-pure);
+    margin-bottom: var(--space-sm);
+    text-transform: uppercase;
+}
+
+.hero-tagline {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    font-weight: 300;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+}
+
+/* Bloco de Versículo */
+.hero-scripture {
+    margin: var(--space-md) 0;
+    padding: 0 var(--space-sm);
+    border: none;
+}
+
+.scripture-text {
+    font-family: var(--font-scripture);
+    font-style: italic;
+    font-size: 1.35rem;
+    color: var(--color-text-pure);
+    line-height: 1.4;
+    margin-bottom: 0.25rem;
+}
+
+.scripture-reference {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-text-dark);
+    display: block;
+}
+
+
+/* ==========================================================================
+   3. BOTÕES E COMPONENTES DE CONVERSÃO
+   ========================================================================== */
+.hero-cta-wrapper {
+    margin-top: var(--space-md);
+}
+
+.btn-primary {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 2px;
+    color: var(--color-text-pure);
+    background-color: var(--color-primary);
+    padding: 1.1rem 2.5rem;
+    border-radius: var(--border-radius-sm);
+    border: 1px solid transparent;
+    box-shadow: 0 8px 24px rgba(255, 106, 0, 0.2);
+    transition: all var(--transition-smooth);
+    text-align: center;
+    width: 100%; /* Ocupa largura total no mobile para melhor clique */
+    max-width: 340px;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    background-color: var(--color-primary-hover);
+    box-shadow: 0 12px 32px rgba(255, 106, 0, 0.4);
+    transform: translateY(-2px);
+    outline: none;
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+
+/* ==========================================================================
+   4. INDICADOR DE SCROLL
+   ========================================================================== */
+.scroll-indicator {
+    display: none; /* Oculto em mobile para evitar poluição visual */
+}
+
+/* Adicionar ao final de css/style.css para suporte ao JS */
+.menu-toggle.active .hamburger {
+    background-color: transparent;
+}
+.menu-toggle.active .hamburger::before {
+    transform: translateY(6px) rotate(45deg);
+}
+.menu-toggle.active .hamburger::after {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+@media screen and (max-width: 63.93rem) {
+    .nav-menu.active {
+        display: block;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: #111111;
+        padding: var(--space-md) var(--space-sm);
+        border-bottom: 2px solid var(--color-primary);
+    }
+    .nav-menu.active ul {
+        list-style: none;
+    }
+    .nav-menu.active li {
+        margin-bottom: var(--space-sm);
+        text-align: center;
+    }
+    .nav-menu.active a {
+        display: block;
+        font-size: 1.1rem;
+        padding: 0.5rem 0;
+    }
+}
+
+/* ==========================================================================
+   SEÇÃO DIAGNÓSTICO - CARDS EM CINZA-CHUMBO COM TEXTO ESCURO
+   ========================================================================== */
+.pain-section {
+    padding: var(--space-xl) 0;
+    background-color: var(--color-bg-main); /* Fundo da seção continua preto absoluto */
+    overflow: hidden;
+}
+
+.pain-container {
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: 0 var(--space-sm);
+}
+
+.pain-header-block {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto var(--space-lg) auto;
+}
+
+/* Wrapper de Isolamento do Slider */
+.pain-slider-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+/* Pista de slider no Mobile */
+.pain-grid {
+    display: flex;
+    gap: var(--space-md);
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    padding: var(--space-sm) var(--space-xs) var(--space-lg) var(--space-xs);
+    -webkit-overflow-scrolling: touch;
+}
+
+.pain-grid::-webkit-scrollbar {
+    display: none; /* Esconde barra de rolagem */
+}
+
+/* CARD EM CINZA-CHUMBO / TEXTO ESCURO */
+.pain-card {
+    flex: 0 0 90%;
+    scroll-snap-align: center;
+    background-color: #dee1e3; /* Fundo Cinza-Chumbo */
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--border-radius-md);
+    padding: var(--space-md);
+    transition: transform 0.4s cubic-bezier(0.25, 1, 0.5, 1), 
+                border-color 0.8s ease, 
+                opacity 0.4s ease;
+    opacity: 0.65; /* Efeito de foco apenas no card inteiro no mobile */
+    transform: scale(1);
+}
+
+/* Card Ativo em Foco (Mobile) */
+.pain-card.active {
+    opacity: 1;
+    transform: scale(1);
+    border-color: var(--color-primary); /* Borda laranja ativa */
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* NÚMEROS DE ÍNDICE - SEMPRE EM LARANJA */
+.card-icon {
+    font-family: var(--font-title);
+    font-size: 3rem;
+    color: var(--color-primary) !important; /* Laranja da identidade visual sempre ativo */
+    opacity: 1 !important; /* Remove qualquer efeito de transparência */
+    line-height: 1;
+    margin-bottom: var(--space-sm);
+    display: block;
+}
+
+/* TEXTOS EM PRETO PARA MÁXIMA LEGIBILIDADE NO FUNDO CHUMBO */
+.card-title {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    font-weight: 800; /* Peso extra para destacar no fundo chumbo */
+    color: #050505; /* Preto absoluto */
+    margin-bottom: var(--space-xs);
+}
+
+.card-text {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: #1A1D20; /* Grafite escuro para leitura confortável sem agredir a vista */
+    line-height: 1.6;
+    font-weight: 600; /* Negrito médio para contraste perfeito sobre o cinza */
+}
+
+/* Paginação por Bolinhas */
+.pain-pagination {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-xs);
+    margin-top: -10px;
+}
+
+.pagination-dot {
+    width: 24px;
+    height: 4px;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.15);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, width 0.3s ease;
+}
+
+.pagination-dot.active {
+    background-color: var(--color-primary);
+    width: 40px;
+}
+
+/* Ajustes Desktop */
+@media screen and (min-width: 64rem) {
+    .pain-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: var(--space-md);
+        overflow: visible;
+        scroll-snap-type: none;
+        padding: 0;
+    }
+
+    .pain-card {
+        flex: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .pain-card:hover {
+        transform: translateY(-8px);
+        border-color: var(--color-primary);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+
+    .pain-pagination {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   6. SEÇÃO O QUE É O ENCONTRO - PILARES CORRIGIDOS PARA CITAÇÃO (BARRA)
+   ========================================================================== */
+.about-section {
+    padding: var(--space-xl) 0;
+    background-color: var(--color-bg-main);
+    position: relative;
+}
+
+.about-container {
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: 0 var(--space-sm);
+}
+
+.about-concept {
+    margin-bottom: var(--space-md);
+}
+
+.about-badge {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-primary);
+    font-weight: 600;
+    display: block;
+    margin-bottom: var(--space-xs);
+}
+
+.about-title {
+    font-family: var(--font-title);
+    font-size: 3.5rem;
+    line-height: 0.9;
+    color: var(--color-text-pure);
+    text-transform: uppercase;
+    margin-bottom: var(--space-sm);
+}
+
+.text-gradient {
+    color: var(--color-primary);
+    background: linear-gradient(135deg, var(--color-primary) 0%, #ffaa66 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.about-highlight {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-text-pure);
+    line-height: 1.4;
+    border-left: 3px solid var(--color-primary);
+    padding-left: var(--space-sm);
+}
+
+.about-text-content p {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    line-height: 1.7;
+    margin-bottom: var(--space-sm);
+    font-weight: 300;
+}
+
+.about-text-content strong {
+    color: var(--color-text-pure);
+    font-weight: 600;
+}
+
+/* Alterado de display: table para flexbox para permitir que a barra de citação 
+   estique verticalmente de forma dinâmica, acompanhando a altura do texto */
+.about-pillars {
+    list-style: none;
+    margin-top: var(--space-md);
+    padding: 0;
+}
+
+.about-pillars li {
+    display: flex;
+    align-items: stretch; /* Faz a barra herdar a altura total do bloco de texto */
+    width: 100%;
+    margin-bottom: var(--space-md);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+.about-pillars li strong {
+    display: block;
+    color: var(--color-primary);
+    font-size: 1.05rem;
+    margin-bottom: 0.25rem;
+}
+
+/* Transforma a elipse em uma linha vertical sólida idêntica à da esquerda */
+.pillar-marker {
+    display: block;
+    width: 3px; /* Mesma espessura da borda da esquerda */
+    background-color: var(--color-primary);
+    margin-right: var(--space-sm); /* Espaçamento entre a linha e o texto */
+    flex-shrink: 0; /* Impede que a linha esprema no mobile */
+    border-radius: 0; /* Remove o arredondamento que gerava a elipse */
+}
+
+.about-pillars div {
+    flex: 1;
+}
+
+/* ==========================================================================
+   7. SEÇÃO PROGRAMAÇÃO / TIMELINE (MOBILE FIRST)
+   ========================================================================== */
+.timeline-section {
+    padding: var(--space-xl) 0;
+    background-color: var(--color-bg-surface); /* Contraste alternado de seção */
+    position: relative;
+}
+
+.timeline-container {
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: 0 var(--space-sm);
+}
+
+.timeline-header-block {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto var(--space-lg) auto;
+}
+
+.timeline-badge {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-primary);
+    font-weight: 600;
+    display: block;
+    margin-bottom: var(--space-xs);
+}
+
+.timeline-title {
+    font-family: var(--font-title);
+    font-size: 2.8rem;
+    line-height: 1;
+    color: var(--color-text-pure);
+    text-transform: uppercase;
+    margin-bottom: var(--space-sm);
+}
+
+.timeline-lead {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+/* Eixo da Linha do Tempo no Mobile */
+.timeline-axis {
+    position: relative;
+    padding-left: 20px; /* Linha fica na esquerda no mobile */
+}
+
+/* A linha vertical cinza/laranja */
+.timeline-axis::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 4px;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(to bottom, var(--color-primary) 0%, rgba(255, 106, 0, 0.2) 80%, rgba(255, 255, 255, 0.01) 100%);
+}
+
+.timeline-item {
+    position: relative;
+    margin-bottom: var(--space-md);
+    width: 100%;
+}
+
+.timeline-item:last-child {
+    margin-bottom: 0;
+}
+
+/* Ponto de marcação no eixo */
+.timeline-dot {
+    position: absolute;
+    top: 24px;
+    left: -20px;
+    width: 10px;
+    height: 10px;
+    background-color: var(--color-bg-surface);
+    border: 2px solid var(--color-primary);
+    border-radius: 50%;
+    z-index: 5;
+}
+
+/* Caixa de Conteúdo do Dia */
+.timeline-content-box {
+    background-color: var(--color-bg-main);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    padding: var(--space-md) var(--space-sm);
+    border-radius: var(--border-radius-md);
+    transition: border-color var(--transition-fast);
+}
+
+.timeline-content-box:hover {
+    border-color: rgba(255, 106, 0, 0.2);
+}
+
+.day-tag {
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--color-primary);
+    letter-spacing: 2px;
+    display: block;
+    margin-bottom: var(--space-xs);
+}
+
+.day-title {
+    font-family: var(--font-body);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--color-text-pure);
+    margin-bottom: var(--space-xs);
+}
+
+.day-text {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    font-weight: 300;
+    margin-bottom: var(--space-sm);
+}
+
+.time-badge {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--color-text-pure);
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 0.3rem 0.75rem;
+    border-radius: var(--border-radius-sm);
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   8. SEÇÃO CHECKLIST / O QUE LEVAR (MOBILE FIRST)
+   ========================================================================== */
+.checklist-section {
+    padding: var(--space-xl) 0;
+    background-color: var(--color-bg-main); /* Retorna ao preto puro */
+    position: relative;
+}
+
+.checklist-container {
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: 0 var(--space-sm);
+}
+
+.checklist-header-block {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto var(--space-lg) auto;
+}
+
+.checklist-badge {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-primary);
+    font-weight: 600;
+    display: block;
+    margin-bottom: var(--space-xs);
+}
+
+.checklist-title {
+    font-family: var(--font-title);
+    font-size: 2.8rem;
+    line-height: 1;
+    color: var(--color-text-pure);
+    text-transform: uppercase;
+    margin-bottom: var(--space-sm);
+}
+
+.checklist-lead {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+/* Blocos de Lista */
+.checklist-grid {
+    display: block;
+}
+
+.checklist-box {
+    background-color: var(--color-bg-surface);
+    border: 1px solid rgba(255, 255, 255, 0.02);
+    padding: var(--space-md) var(--space-sm);
+    border-radius: var(--border-radius-md);
+    margin-bottom: var(--space-md);
+}
+
+.checklist-box:last-child {
+    margin-bottom: 0;
+}
+
+.box-title {
+    font-family: var(--font-body);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--color-text-pure);
+    margin-bottom: var(--space-md);
+    position: relative;
+    padding-left: var(--space-sm);
+}
+
+/* Linha laranja vertical ao lado do título do bloco */
+.box-accent-line {
+    position: absolute;
+    left: 0;
+    top: 4px;
+    width: 3px;
+    height: 1.25rem;
+    background-color: var(--color-primary);
+}
+
+.checklist-items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.checklist-items li {
+    display: table;
+    width: 100%;
+    margin-bottom: var(--space-sm);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+    font-weight: 300;
+}
+
+.checklist-items li:last-child {
+    margin-bottom: 0;
+}
+
+.checklist-items strong {
+    color: var(--color-text-pure);
+    font-weight: 600;
+}
+
+/* Controle dos Ícones Customizados */
+.check-icon {
+    display: table-cell;
+    width: 24px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--color-primary); /* Padrão Laranja */
+    vertical-align: top;
+    padding-right: var(--space-xs);
+}
+
+.check-icon.icon-warn {
+    color: #ffcc00; /* Amarelo de atenção para avisos */
+}
+
+.check-icon.icon-prohibited {
+    color: #ff3333; /* Vermelho para restrições rígidas */
+}
+
+.checklist-items div {
+    display: table-cell;
+    vertical-align: top;
+}
+
+/* ==========================================================================
+   9. SEÇÃO FAQ / ACCORDION (MOBILE FIRST)
+   ========================================================================== */
+.faq-section {
+    padding: var(--space-xl) 0;
+    background-color: var(--color-bg-surface); /* Contraste alternado */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.faq-container {
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: 0 var(--space-sm);
+}
+
+.faq-header-block {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto var(--space-lg) auto;
+}
+
+.faq-badge {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--color-primary);
+    font-weight: 600;
+    display: block;
+    margin-bottom: var(--space-xs);
+}
+
+.faq-title {
+    font-family: var(--font-title);
+    font-size: 2.8rem;
+    line-height: 1;
+    color: var(--color-text-pure);
+    text-transform: uppercase;
+    margin-bottom: var(--space-sm);
+}
+
+.faq-lead {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--color-text-muted);
+    font-weight: 300;
+    line-height: 1.6;
+}
+
+/* Wrapper do Accordion */
+.faq-accordion-wrapper {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.faq-item {
+    background-color: var(--color-bg-main);
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    border-radius: var(--border-radius-md);
+    margin-bottom: var(--space-sm);
+    overflow: hidden;
+    transition: border-color var(--transition-fast);
+}
+
+.faq-item:hover {
+    border-color: rgba(255, 106, 0, 0.2);
+}
+
+/* Botão de Controle (Gatilho) */
+.faq-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 1.25rem var(--space-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    text-align: left;
+    outline: none;
+}
+
+.faq-question {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--color-text-pure);
+    padding-right: var(--space-sm);
+}
+
+.faq-icon {
+    font-family: var(--font-body);
+    font-size: 1.35rem;
+    color: var(--color-primary);
+    transition: transform var(--transition-smooth);
+    line-height: 1;
+}
+
+/* Painel de Resposta - Configuração Base */
+.faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* INTERVENÇÃO CRUCIAL: Força a abertura se a classe active estiver no pai */
+.faq-item.active .faq-answer {
+    max-height: 500px; /* Altura limite segura para o texto expandir totalmente */
+}
+
+.faq-answer-inner {
+    padding: 0 var(--space-sm) 1.25rem var(--space-sm);
+}
+
+.faq-answer-inner p {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+    font-weight: 300;
+}
+
+/* ==========================================================================
+   10. SEÇÃO CTA FINAL & RODAPÉ (MOBILE FIRST)
+   ========================================================================== */
+.cta-section {
+    padding: var(--space-xl) 0;
+    background-color: var(--color-bg-main); /* Retorna ao preto absoluto */
+    text-align: center;
+}
+
+.cta-container {
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: 0 var(--space-sm);
+}
+
+.cta-card-premium {
+    background-color: var(--color-bg-surface);
+    border: 1px solid rgba(255, 106, 0, 0.15); /* Borda laranja sutil */
+    padding: var(--space-lg) var(--space-sm);
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.8);
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.cta-badge {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--color-primary);
+    font-weight: 700;
+    display: block;
+    margin-bottom: var(--space-sm);
+}
+
+.cta-title {
+    font-family: var(--font-title);
+    font-size: 2.8rem;
+    line-height: 1;
+    color: var(--color-text-pure);
+    text-transform: uppercase;
+    margin-bottom: var(--space-sm);
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.cta-lead {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: var(--color-text-muted);
+    font-weight: 300;
+    line-height: 1.6;
+    margin-bottom: var(--space-lg);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Botão de Alta Escala */
+.btn-cta-main {
+    display: inline-block;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 2px;
+    color: var(--color-text-pure);
+    background-color: var(--color-primary);
+    padding: 1.3rem 2rem;
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 12px 32px rgba(255, 106, 0, 0.3);
+    transition: all var(--transition-smooth);
+    width: 100%;
+    max-width: 440px;
+}
+
+.btn-cta-main:hover,
+.btn-cta-main:focus {
+    background-color: var(--color-primary-hover);
+    box-shadow: 0 16px 40px rgba(255, 106, 0, 0.5);
+    transform: translateY(-3px);
+    outline: none;
+}
+
+.cta-secure-text {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: var(--color-text-dark);
+    margin-top: var(--space-sm);
+    letter-spacing: 1px;
+}
+
+/* ==========================================================================
+   11. STYLE DO RODAPÉ
+   ========================================================================== */
+.main-footer {
+    background-color: #050505;
+    padding: var(--space-lg) 0 var(--space-md) 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.02);
+}
+
+.footer-container {
+    max-width: var(--max-width-content);
+    margin: 0 auto;
+    padding: 0 var(--space-sm);
+}
+
+.footer-top {
+    display: block;
+    text-align: center;
+}
+
+.footer-logo {
+    font-family: var(--font-title);
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    color: var(--color-text-pure);
+    display: block;
+    margin-bottom: var(--space-xs);
+}
+
+.footer-brand p {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--color-text-dark);
+    margin-bottom: var(--space-md);
+}
+
+.footer-nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.footer-nav li {
+    margin-bottom: var(--space-xs);
+}
+
+.footer-nav a {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast);
+}
+
+.footer-nav a:hover {
+    color: var(--color-primary);
+}
+
+.footer-divider {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.02);
+    margin: var(--space-md) 0;
+}
+
+.footer-bottom {
+    text-align: center;
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    color: var(--color-text-dark);
+    line-height: 1.6;
+}
+
+/* ==========================================================================
+   CORREÇÃO DO MENU MOBILE (SUPORTE AO SCRIPT ACTIVE)
+   ========================================================================== */
+
+/* Garante o clique correto no botão invisível */
+.menu-toggle {
+    position: relative;
+    z-index: 1010;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Animação das 3 linhas virando um "X" */
+.menu-toggle.active .hamburger {
+    background-color: transparent !important;
+}
+.menu-toggle.active .hamburger::before {
+    transform: translateY(6px) rotate(45deg);
+}
+.menu-toggle.active .hamburger::after {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Força a exibição do menu suspenso apenas quando a classe .active for injetada */
+@media screen and (max-width: 63.93rem) {
+    .nav-menu {
+        display: none; /* Escondido por padrão */
+    }
+    
+    .nav-menu.active {
+        display: block !important; /* Exibe imediatamente ao clicar */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background-color: #111111;
+        padding: 120px var(--space-md) var(--space-md) var(--space-md);
+        z-index: 1005;
+    }
+    
+    .nav-menu.active ul {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: var(--space-md);
+    }
+    
+    .nav-menu.active a {
+        font-family: var(--font-body);
+        font-size: 1.5rem; /* Fonte maior para melhor clique no celular */
+        font-weight: 600;
+        color: var(--color-text-pure);
+        display: block;
+    }
+    
+    .nav-menu.active .btn-nav {
+        background-color: var(--color-primary);
+        padding: 0.8rem 2rem;
+        border-radius: var(--border-radius-sm);
+        color: var(--color-text-pure) !important;
+        text-align: center;
+        width: 100%;
+        max-width: 280px;
+    }
+}
