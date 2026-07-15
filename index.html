@@ -9,17 +9,16 @@
     <link rel="stylesheet" href="css/variables.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-MKJ11E8WSN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-MKJ11E8WSN');
-</script>
 	
+				<!-- Google tag (gtag.js) -->
+			<script async src="https://www.googletagmanager.com/gtag/js?id=G-MKJ11E8WSN"></script>
+			<script>
+				window.dataLayer = window.dataLayer || [];
+				function gtag(){dataLayer.push(arguments);}
+				gtag('js', new Date());
+				gtag('config', 'G-MKJ11E8WSN');
+
+			</script>
 	
 </head>
 <body>
@@ -27,9 +26,16 @@
     <header class="main-header">
         <div class="header-container">
             
-            <a href="#" class="logo-container">
+            <!-- <a href="#" class="logo-container">
                 <span class="logo-text">PENIEL</span>
-            </a>
+            </a> -->
+
+		<!-- TOPO: Procure pela classe .logo ou onde está a palavra PENIEL e ajuste assim: -->
+			<div class="logo-container">
+			<!-- <a href="#home" class="logo">PENIEL</a> -->
+				<img src="img/logo_imvnbranco.png" alt="Logotipo Oficial" class="logo-img-topo" width="40" height="40" loading="eager">
+			</div>
+
 
             <button class="menu-toggle" aria-label="Abrir menu de navegação" aria-expanded="false">
                 <span class="hamburger"></span>
@@ -90,7 +96,7 @@
             <div class="pain-container">
                 
                 <header class="pain-header-block">
-                    <span class="pain-badge">O Diagnóstico</span>
+                    <span class="pain-badge">O DIAGNÓSTICO</span>
                     <h2 class="pain-title">Talvez você esteja vivendo assim...</h2>
                     <p class="pain-lead">
                         A rotina, os traumas e o esgotamento silencioso têm o poder de moldar quem somos, nos afastando do plano original. Olhe para dentro hoje.
@@ -140,7 +146,7 @@
             <div class="about-container">
                 
                 <div class="about-concept">
-                    <span class="about-badge">A Resposta</span>
+                    <span class="about-badge">A RESPOSTA</span>
                     <h2 class="about-title">O que é o <br><span class="text-gradient">Encontro?</span></h2>
                     <p class="about-highlight">
                         Não é um retiro religioso comum. É um divisor de águas projetado para arrancar máscaras e revelar sua verdadeira identidade.
@@ -409,10 +415,13 @@
         <div class="footer-container">
             
             <div class="footer-top">
-                <div class="footer-brand">
-                    <span class="footer-logo">PENIEL</span>
-                    <p>Um encontro pode mudar toda a sua história.</p>
-                </div>
+                <!-- RODAPÉ: Substitua o bloco .footer-brand por este: -->
+			<div class="footer-brand">
+				<!-- <span class="footer-logo">PENIEL</span> -->
+				<!-- Logotipo Centralizado no Rodapé -->
+				<img src="img/logo_imvnbranco.png" alt="Logotipo Oficial" class="logo-img-rodape" width="60" height="60" loading="lazy">
+				<p>Um encontro pode mudar toda a sua história.</p>
+			</div>
                 
                 <nav class="footer-nav" aria-label="Navegação do rodapé">
                     <ul>
