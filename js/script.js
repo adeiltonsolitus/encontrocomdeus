@@ -61,3 +61,37 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    const paymentButton = document.getElementById('start-payment');
+
+    if (paymentButton) {
+        paymentButton.addEventListener('click', (event) => {
+            // Se o navegador for muito rápido, o redirecionamento pode cortar o disparo do GA4.
+            // Usamos a propriedade especial "event_callback" para garantir o envio antes de mudar de página.
+            event.preventDefault(); 
+            const targetUrl = paymentButton.getAttribute('href');
+
+            // Dispara o evento padrão do GA4 para início de pagamento/inscrição
+            gtag('event', 'begin_checkout', {
+                'currency': 'BRL',
+                'value': 170.00, // Coloque aqui o valor exato do ingresso do retiro
+                'items': [{
+                    'item_id': 'retiro_peniel_2026',
+                    'item_name': 'Inscrição Retiro Peniel',
+                    'price': 170.00,
+                    'quantity': 1
+                }],
+                'event_callback': () => {
+                    // Após garantir o envio dos dados ao Google, redireciona o usuário para a página de obrigado
+                    window.location.href = targetUrl;
+                }
+            });
+
+            // Fallback de segurança: se o Google falhar em responder em 1 segundo, muda de página mesmo assim
+            setTimeout(() => {
+                window.location.href = targetUrl;
+            }, 1000);
+        });
+    }
+});
+
